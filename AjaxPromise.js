@@ -1,6 +1,6 @@
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-function makePromiseCall(methodType, url, callback, async = true, data = null) {
+function makePromiseCall(methodType, url, async = true, data = null) {
   return new Promise(function (resolve, reject) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -46,4 +46,14 @@ makePromiseCall("DELETE", deleteURL, false)
   })
   .catch((error) => {
     console.log("DELETE Error Status: " + JSON.stringify(error));
+  });
+
+const postURL = "http://localhost:3000/employees";
+const emplData = { name: "Harry", salary: "5000" };
+makePromiseCall("POST", postURL, true, emplData)
+  .then((responseText) => {
+    console.log("User Added: " + responseText);
+  })
+  .catch((error) => {
+    console.log("POST Error Status: " + JSON.stringify(error));
   });
