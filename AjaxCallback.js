@@ -36,3 +36,10 @@ function userDeleted(data) {
   console.log("User Deleted: " + data);
 }
 makeAJAXCall("DELETE", deleteURL, userDeleted, false);
+
+const postURL = "http://localhost:3000/employees";
+const emplData = { name: "Harry", salary: "5000" };
+function userAdded(data) {
+  console.log("User Added: " + data);
+}
+makeAJAXCall("POST", postURL, userAdded, true, emplData);
