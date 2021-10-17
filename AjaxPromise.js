@@ -38,3 +38,12 @@ makePromiseCall("GET", getURL, true)
   .catch((error) => {
     console.log("GET Error Status: " + JSON.stringify(error));
   });
+
+const deleteURL = "http://localhost:3000/employees/4";
+makePromiseCall("DELETE", deleteURL, false)
+  .then((responseText) => {
+    console.log("User Deleted: " + responseText);
+  })
+  .catch((error) => {
+    console.log("DELETE Error Status: " + JSON.stringify(error));
+  });
