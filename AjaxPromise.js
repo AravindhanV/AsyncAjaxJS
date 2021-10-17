@@ -10,7 +10,7 @@ function makePromiseCall(methodType, url, callback, async = true, data = null) {
           " Status:" +
           xhr.status
       );
-      if (xhr.status.toString().match("^[2][0-9]{2}$")) {
+      if (xhr.status.toString().match("^2[0-9]{2}$")) {
         resolve(xhr.responseText);
       } else if (xhr.status.toString().match("^[4,5][0-9]{2}$")) {
         reject({
@@ -29,3 +29,12 @@ function makePromiseCall(methodType, url, callback, async = true, data = null) {
     console.log(methodType + " request sent to the server");
   });
 }
+
+const getURL = "http://127.0.0.1:3000/employees/1";
+makePromiseCall("GET", getURL, true)
+  .then((responseText) => {
+    console.log("Get User Data: " + responseText);
+  })
+  .catch((error) => {
+    console.log("GET Error Status: " + JSON.stringify(error));
+  });
